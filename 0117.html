@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>VueStudy</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function() {
+            new Vue({ //创建一个Vue实例
+                el: '#box', //选择器，来选择页面当中的元素
+                data: {
+                    msg: 'Welcome vue !', //数据类型和信息
+                    msg2: 12,
+                    msg3: true,
+                    arr: ['apple', 'orange', 'pear'],
+                    json: {
+                        a: 'apple',
+                        b: 'orange',
+                        c: 'pear'
+                    }
+                },
+                methods: {
+                    show: function() {
+                        alert(1);
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" v-model="msg">
+        <br> {{msg}}
+        <br> {{msg2}}
+        <br> {{msg3}}
+        <!-- 新版本的Vue会原样输出数据 -->
+        <br> {{arr}}
+        <br> {{json}}
+
+        <br>
+        <!-- 对于数组和json数据格式的数据使用 v-for 来循环输出 -->
+        <ul>
+            <li v-for="(value,index) in arr">
+                {{value}} {{index}}
+            </li>
+        </ul>
+
+        <hr>
+
+        <br>
+        <input type="button" value="添加" v-on:click="show()">
+        <ul>
+            <li v-for="value in json">
+                {{value}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(k,v,index) in json">
+                {{index}} {{v}} {{k}}
+            </li>
+        </ul>
+
+    </div>
+</body>
+
+</html>

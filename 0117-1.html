@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>VueStudy1</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function() {
+            new Vue({ //创建一个Vue实例
+                el: '#box', //选择器，来选择页面当中的元素
+                data: {
+                    arr: ['apple', 'orange', 'pear'],
+                    json: {
+                        a: 'apple',
+                        b: 'orange',
+                        c: 'pear'
+                    }
+                },
+                methods: {
+                    add: function() {
+                        this.arr.push('tomato');
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 使用Vue来绑定事件，需要用v-on来进行绑定，事件在new Vue里面写methods里面写事件  -->
+        <!-- <input type="button" value="按钮" v-on:click="show()"> -->
+
+        <input type="button" value="添加数据" v-on:click="add()">
+        <br>
+        <ul>
+            <li v-for="(value,index) in arr">
+                {{value}} {{index}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
