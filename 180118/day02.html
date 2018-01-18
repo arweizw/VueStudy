@@ -12,7 +12,7 @@
             new Vue({
                 el: '#box',
                 data: {
-                    a: false
+                    a: true
                 }
             });
         };
@@ -21,7 +21,7 @@
 
 <body>
     <div id="box">
-        <input type="button" value="按钮" v-on:click="a=true">
+        <input type="button" value="按钮" v-on:click="a=false">
         <div style="width:100px; height:100px; background:blue" v-show="a"></div>
     </div>
 </body>
