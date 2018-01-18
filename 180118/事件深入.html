@@ -5,14 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>day02</title>
+    <title>事件深入</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
     <script src="vue.js"></script>
     <script>
         window.onload = function() {
             new Vue({
                 el: '#box',
                 data: {
-                    a: false
+
+                },
+                methods: {
+                    show: function() {
+                        alert(1);
+                    }
                 }
             });
         };
@@ -21,8 +29,7 @@
 
 <body>
     <div id="box">
-        <input type="button" value="按钮" v-on:click="a=true" v-on:mouseout="a=false">
-        <div style="width:100px; height:100px; background:blue;" v-show="a"></div>
+        <input type="button" value="按钮" @click="show()">
     </div>
 </body>
 
