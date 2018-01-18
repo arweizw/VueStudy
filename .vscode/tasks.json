@@ -4,9 +4,20 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
-            "type": "shell",
-            "command": "echo Hello"
+            "taskName": "Run HTML file with Chrome",
+            "type": "process",  // [shell,process]
+            "command": "Chrome",
+            "args": ["${file}"],
+            "windows": {
+                "command": "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+            },
+            "group": "build",
+            "presentation": {
+                // Reveal the output only if unrecognized errors occur.
+                "reveal": "never"  //[always,never,silent]
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": "$msCompile"
         }
     ]
 }

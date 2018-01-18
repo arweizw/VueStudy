@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            background: blue;
+        }
+    </style>
     <title>事件深入</title>
     <link rel="stylesheet" href="lib/bootstrap.min.css">
     <script src="lib/jquery-3.2.1.min.js"></script>
@@ -15,11 +23,25 @@
             new Vue({
                 el: '#box',
                 data: {
-
+                    url:'https://www.baidu.com/img/bd_logo1.png',
+                    w:'300px',
+                    t:'这是一张图片',
+                    json:{
+                        red:true,
+                        blue:false
+                    },
+                    jsons:{
+                        color:'yellow',
+                        background:'gray'
+                    },
+                    msg:'测试'
                 },
                 methods: {
                     show: function() {
-                        alert(1);
+                            alert('您按回车了！！！');
+                    },
+                    show2:function(){
+                        alert(2);
                     }
                 }
             });
@@ -29,7 +51,40 @@
 
 <body>
     <div id="box">
-        <input type="button" value="按钮" @click="show()">
+        <!-- 阻止冒泡行为  .stop -->
+        <input type="button" value="按钮" @click.stop="show()"> 
+        <br>
+        <hr>
+        <!--  阻止右键行为 .prevent -->
+        <input type="button" value="右键测试" @contextmenu.prevent="show2()"> 
+        <br>
+        <hr>
+        <!-- 键盘监听行为 keydown  keyup  后面追加(.)键盘码可以直接使用无需判断-->
+        <input type="text" @keydown.13="show()">
+        <br>
+        <hr>
+        <!-- v-bind 绑定属性 -->
+        <img v-bind:src="url" alt="">
+        <!-- 绑定属性简写 : -->
+        <img :src="url" alt="" :width="w" :title="t">
+        <br>
+        <hr>
+        <!-- class属性的绑定 :class -->
+        <strong :class="json">测试文本........</strong>
+        <br>
+        <hr>
+        <!-- sytle属性的绑定 :sytle -->
+        <strong :style="jsons">Style。。。。。。</strong>
+        <br>
+        <hr>
+        <!-- 模板的用法  -->
+        <input type="text" v-model="msg">
+        <br>
+        <!-- 新版本中原有的*不能使用，新用法为：v-once 此用法为不更新数据-->
+        <span v-once>{{msg}}</span>
+        <br>
+        <!-- 识别输入的字符转义输出为html语言 原有的{{{msg}}}为不能使用，新用法为v-html -->
+        <span v-html="msg"></span>
     </div>
 </body>
 
