@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/jquery-3.2.1.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/vue1.0.js"></script>
+    <script src="../lib/vue-resource0.7.js"></script>
+
+</head>
+
+<body>
+    <div id="box">
+        <span>{{msg}}</span>
+        <script>
+            window.onload = function() {
+                var vm = new Vue({
+                    el: '#box',
+                    data: {
+                        msg: '测试生存周期！'
+                    },
+                    created: function() {
+                        alert('创建实例！');
+                    },
+                    beforeCompile: function() {
+                        alert('编译之前！');
+                    },
+                    compiled: function() {
+                        alert('编译之后！');
+                    },
+                    ready: function() {
+                        alert('插入到文档中！');
+                    },
+                    beforeDestroy() {
+                        alert('销毁之前!');
+                    },
+                    destroyed() {
+                        alert('销毁之后！');
+                    }
+
+                });
+                document.onclick = function() {
+                    vm.$destroy();
+                };
+            }
+        </script>
+    </div>
+</body>
+
+</html>
