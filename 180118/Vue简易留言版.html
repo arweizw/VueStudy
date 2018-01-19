@@ -95,16 +95,17 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
-                        <h4 class="modal-title">确认删除么?</h4>
-                    </div>
-                    <div class="modal-body text-right">
-                        <button data-dismiss="modal" class="btn btn-primary btn-sm">取消</button>
-                        <button data-dismiss="modal" class="btn btn-warning btn-sm" v-on:click="deleteMsg(nowIndex)">确认</button>
+                        <!-- 根据操作的动作 使用if else 语句来判断需要显示的title名称 -->
+                        <h4 class="modal-title" v-if="nowIndex!=-2">确认删除么?</h4>
+                        <h4 class="modal-title" v-else>确认全部删除么?</h4>
+                        <div class="modal-body text-right">
+                            <button data-dismiss="modal" class="btn btn-primary btn-sm">取消</button>
+                            <button data-dismiss="modal" class="btn btn-warning btn-sm" v-on:click="deleteMsg(nowIndex)">确认</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
