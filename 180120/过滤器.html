@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/jquery-3.2.1.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/vue1.0.js"></script>
+    <script src="../lib/vue-resource0.7.js"></script>
+
+</head>
+
+<body>
+    <div id="box">
+        <!-- debounce 配合事件，效果是延迟  -->
+        <input type="text" @keyup="show |debounce 2000">
+
+        <br>
+        <hr>
+        <ul>
+            <!-- 从第几位开始显示 显示几行 -->
+            <li v-for="value in arr | limitBy 2 2">{{value}}</li>
+        </ul>
+        <br>
+        <hr>
+        <ul>
+            <!-- 显示几行数据 -->
+            <li v-for="value in arr | limitBy 3">{{value}}</li>
+        </ul>
+        <br>
+        <hr>
+        <ul>
+            <!-- 显示几行数据 从最后一位开始计数 -->
+            <li v-for="value in arr | limitBy 2 arr.length-1">{{value}}</li>
+        </ul>
+        <br>
+        <hr>
+        <ul>
+            <!-- 默认显示全部数据 -->
+            <li v-for="value in arr | limitBy">{{value}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <!-- 过滤需要过滤的信息  filterBy -->
+            <li v-for="value in msg | filterBy">{{value}}</li>
+        </ul>
+        <hr>
+        <input type="text" v-model="a">
+        <ul>
+            <!-- 过滤需要过滤的信息  filterBy -->
+            <li v-for="value in msg | filterBy a">{{value}}</li>
+        </ul>
+        <hr>
+        <input type="text" v-model="a">
+        <ul>
+            <!-- 排序 orderBy -->
+            <li v-for="value in msg | orderBy 1">{{value}}</li>
+        </ul>
+        <script>
+            /* vm可以理解为实例 */
+            var vm = new Vue({
+                data: {
+                    arr: [1, 2, 3, 4, 5, 6],
+                    msg: ['hello', 'welcome', 'apple', 'edge', 'hasd'],
+                    a: ''
+                },
+                methods: {
+                    show: function() {
+                        alert(1);
+                    }
+                }
+            }).$mount('#box'); //第二种写法----$mount手动挂载
+        </script>
+    </div>
+</body>
+
+</html>

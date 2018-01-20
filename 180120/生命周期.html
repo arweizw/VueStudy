@@ -16,13 +16,21 @@
 
 <body>
     <div id="box">
+        <!-- {{}}读取数据信息有可能闪烁 -->
         <span>{{msg}}</span>
+        <br>
+        <!-- v-text格式可以防止数据在没有被编译的时候展现出来数据格式 -->
+        <span v-text="msg"></span>
+        <br>
+        <!-- v-html  可以识别转义字符，而不直接输出源代码格式-->
+        <span v-html="msg2"></span>
         <script>
             window.onload = function() {
                 var vm = new Vue({
                     el: '#box',
                     data: {
-                        msg: '测试生存周期！'
+                        msg: '测试生存周期！',
+                        msg2: '<strong>代码转义</strong>'
                     },
                     created: function() {
                         alert('创建实例！');

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <aaa></aaa>
+        <ccc></ccc>
+    </div>
+    <script>
+        /* 自定义组件  1，全局组件 */
+        var Aaa = Vue.extend({
+            template: '<h2>我是标题</h2>'
+        });
+        // Vue.component(自定义组件名)
+        var Ccc = Vue.extend({
+            data() {
+                return {
+                    msg: '测试标题！'
+                };
+            },
+            methods: {
+                change() {
+                    this.msg = '改变了！'
+                }
+            },
+            template: '<h2 @click="change">{{msg}}</h2>'
+        });
+        Vue.component('aaa', Aaa);
+
+        Vue.component('ccc', Ccc);
+        var vm = new Vue({
+            el: '#box',
+        });
+    </script>
+</body>
+
+</html>

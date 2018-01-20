@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/jquery-3.2.1.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/vue1.0.js"></script>
+    <script src="../lib/vue-resource0.7.js"></script>
+
+</head>
+
+<body>
+    <div id="box">
+        <input type="button" value="添加" @click="add">
+        <ul>
+            <!-- track-by 用于可以重复循环添加数据，
+                如果不添加track-by就不能重复添加 -->
+            <li v-for="val in arr" track-by="$index">
+                {{val}}
+            </li>
+        </ul>
+        <script>
+            /* vm可以理解为实例 */
+            var vm = new Vue({
+                data: {
+                    arr: ['apple', 'banana', 'pear']
+                },
+                methods: {
+                    add: function() {
+                        this.arr.push('tomato');
+                    }
+                }
+            }).$mount('#box'); //第二种写法----$mount手动挂载
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/jquery-3.2.1.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="vue1.0.js"></script>
+    <script src="../lib/vue-resource0.7.js"></script>
+    <style>
+        .st {
+            width: '100px';
+            height: '100px';
+            background: 'blue';
+            position: 'absolute';
+            right: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        /*         Vue.directive('drag', function() {
+                                    var oDiv = this.el;
+                                    oDiv.onmousedown = function(ev) {
+                                        var disX = ev.clientX - oDiv.offsetLeft;
+                                        var disY = ev.clientX - oDiv.offsetTop;
+
+                                        document.onmousemove = function(ev) {
+                                            var l = ev.clientX - disX;
+                                            var t = ev.clientX - disY;
+                                            oDiv.style.left = l + 'px';
+                                            oDiv.style.top = t + 'px';
+                                        };
+                                        document.onmouseup = function() {
+                                            document.onmousemove = null;
+                                            document.onmouseup = null;
+                                        };
+                                    };
+                                }); */
+        window.onload = function() {
+            var vm = new Vue({
+                data: {
+                    el: '#box'
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 引用自定义指令的时候必须加 v- -->
+        <div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+        <div v-drag :style="{width:'100px', height:'100px', background:'red', position:'absolute', left:0, top:0}"></div>
+    </div>
+</body>
+
+</html>
