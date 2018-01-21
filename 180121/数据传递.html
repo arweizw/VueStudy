@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <aaa></aaa>
+        <hr>
+    </div>
+    <!-- 多信息或者多数据时使用template模板来进行编写 -->
+    <template id="aaa">
+         <h1>我是父级-->{{msg}}</h1>
+         <!-- 子组件想要读取父组件数据时需要定义一个属性名称(:name="父组件信息名称") -->
+         <bbb @child-msg="get" :m="msg"></bbb>
+    </template>
+
+    <template id="bbb">
+        <h2>我是子级-->{{a}}-->{{m}}</h2>
+        <input type="button" value="发送子组件" @click="send">
+    </template>
+    <script>
+        var vm = new Vue({
+            el: '#box',
+            data: {
+                a: 'aaa'
+            },
+            components: {
+                'aaa': {
+                    data() {
+                        return {
+                            msg: '我是父组件的数据'
+                        }
+                    },
+                    template: '#aaa',
+                    methods: {
+                        get(a) {
+                            this.msg = a;
+                        }
+                    },
+                    components: {
+                        'bbb': {
+                            data() {
+                                return {
+                                    a: '我是子组件的数据'
+                                }
+                            },
+                            // 调取父级方法：props
+                            props: {
+                                'm': String
+                            },
+                            methods: {
+                                send() {
+                                    this.$emit('child-msg', this.a);
+                                }
+                            },
+                            template: '#bbb'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
