@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script src="../lib/vue.js"></script>
+    <script>
+        /* 2.0版本中自定义组件不在直接识别片段代码 */
+        Vue.component('my-aaa', {
+            template: '#aaa'
+        });
+        window.onload = function() {
+            new Vue({
+                el: '#box',
+                data: {
+                    msg: 'welcome vue2.0'
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <template id="aaa">
+        <!-- 在创建完template后需要用一个div来包裹住代码，否则无法显示 -->
+        <div>
+            <h3>我是组件</h3><strong>加粗</strong>
+        </div>
+    </template>
+    <div id="box">
+        {{msg}}
+        <my-aaa></my-aaa>
+    </div>
+
+</body>
+
+</html>

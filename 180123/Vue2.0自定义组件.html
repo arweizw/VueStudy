@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script src="../lib/vue.js"></script>
+    <script>
+        /* 自定义组件以变量方式命名，以json方式定义数据格式 */
+        var Home = {
+            template: '#aaa'
+        };
+        window.onload = function() {
+            new Vue({
+                el: '#box',
+                data: {
+                    msg: 'welcome vue2.0'
+                },
+                components: {
+                    'aaa': Home
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <template id="aaa">
+        <!-- 在创建完template后需要用一个div来包裹住代码，否则无法显示 -->
+        <div>
+            <h3>我是组件</h3><strong>加粗</strong>
+        </div>
+    </template>
+
+    <div id="box">
+        {{msg}}
+        <aaa></aaa>
+    </div>
+
+</body>
+
+</html>
